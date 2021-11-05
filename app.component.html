@@ -33,10 +33,33 @@
     <div [ngClass]="{'red':true,'size20':false}">Class bindig- ngClass directive</div>
     <div [ngClass]="{'red':true,'size20':true}">Class bindig- ngClass directive</div>
 
+    <div [className]="cssStringVar">Class binding - dynamically with property</div>
+    <div [ngClass]="cssStringVar">Class binding - dynamically set</div>
 
-    <input type="text" name="value" [(ngModel)]="name">
+    <div [className]="getClass()">Class binding with function</div>
+    <div [className]="hasError ? 'red' : 'green'"> Ternary operator with property</div>
+    <div [className]="isError() ? 'red' : 'green'"> Ternary operator with function</div>
+
+    <div [class.red]="true" [class.size20]="false">conditionally binding class</div>
+    <div [class.red]="hasError" [class.size20]="hasError">conditionally binding class</div>
+    <div [ngClass]="cssArray">
+     Class binding with css defined in Array
+    </div>
+
+    <p [style.color]="'red'">Style binding</p>
+    <p [style.background-color]="'grey'">Style binding</p>
+    <p [ngStyle]="{'color': 'green'}">Style binding - ngStyle</p>
+    <p [style.color]="hasError ? 'red' : 'green'">Style binding - property</p>
+    <p [style.color]="isError() ? 'red' : 'green'">Style binding - function</p>
+    <h3> Two way binding</h3>
     {{name}}
-
+    <input type="text" name="value" [(ngModel)]="name"><br>
+    After changing name,
+    {{name}}
+<br>
+<h3>One to way binding</h3>
+    <input type="text" name="value" value={{name}}>
+   
 
     <p>items</p>
 <ul>

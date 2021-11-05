@@ -10,6 +10,10 @@ export class AppComponent {
   name="Sai";
   isDisabled=true;
   isEnabled=false;
+  cssStringVar: string= 'red size20';
+  hasError:boolean =false;
+  cssArray:string[]=['red','size20']; 
+
   items= [
     new item(1, 'Mobile'),
     new item(2, 'Laptop'),
@@ -24,8 +28,13 @@ max(first: number, second: number): number {
   return Math.max(first, second);
 }
 
-
-
+getClass() {
+  return 'green';
+}
+isError()
+{
+  return true;
+}
 }
 export class item {
   code:number
