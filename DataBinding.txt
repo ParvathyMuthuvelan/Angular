@@ -1,0 +1,582 @@
+ Angular Components are useless if they do not show any dynamic data. They also need to respond to user interactions and react to events. The data binding kees both component & view in sync with each other. We use techniques like Interpolation, Property Binding, Event Binding & Two Way Binding to bind data. We also learn how to use the ngModel directive to achieve the two-way binding in Angular Forms.
+
+Data binding is a technique, where the data stays in sync between the component and the view. Whenever the user updates the data in the view, Angular updates the component. When the component gets new data, the Angular updates the view.
+
+One way binding
+In one way binding data flows from one direction. Either from view to component or from component to view.
+
+From Component to View
+To bind data from component to view, we make use of Interpolation & Property Binding.
+
+Interpolation
+Interpolation allows us to include expressions as part of any string literal, which we use in our HTML. The angular evaluates the expressions into a string and replaces it in the original string and updates the view. You can use interpolation wherever you use a string literal in the view
+
+The Angular uses the {{ }} (double curly braces) in the template to denote the interpolation. The syntax is as shown below
+
+{{ templateExpression }}
+
+The content inside the double braces is called Template Expression
+
+The Angular first evaluates the Template Expression and converts it into a string. Then it replaces Template expression with the result in the original string in the HTML. Whenever the template expression changes, the Angular updates the original string again.
+
+Example
+
+Welcome,  {{firstName}} {{lastName}}
+
+import { Component } from '@angular/core';
+ 
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  firstName= 'Sachin';
+  lastName=”Tendulkar”
+}
+ 
+
+Property binding
+The Property binding allows us to bind HTML element property to a property in the component. Whenever the value of the component changes, the Angular updates the element property in the View. You can set the properties such as class, href, src, textContent, etc using property binding. You can also use it to set the properties of custom components or directives (properties decorated with @Input).
+
+The Property Binding uses the following Syntax
+
+[binding-target]=”binding-source”
+
+The binding-target (or target property) is enclosed in a square bracket []. It should match the name of the property of the enclosing element.
+
+Binding-source is enclosed in quotes and we assign it to the binding-target. The Binding source must be a template expression. It can be property in the component, method in component, a template reference variable or an expression containing all of them.Whenever the value of Binding-source changes, the view is updated by the Angular.
+
+app.component.html
+ 
+<h1 [innerText]="title"></h1>
+<h2>Example 1</h2>
+<button [disabled]="isDisabled">I am disabled</button>
+ 
+ app.component.ts
+
+import { Component } from '@angular/core';
+ 
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title="Angular Property Binding Example"
+  
+  //Example 1
+  isDisabled= true;
+ 
+}
+ The title property of the component class is bound to the innerText property of the h1 tag. Disabled Property of the button is bound to the isDisabled Property of the component
+
+Whenever we modify the title or isDisabled in the component, the Angular automatically updates the view.
+
+Class Binding
+You can set the class in the following ways. Click on the links to find out more
+
+ClassName Property binding
+Set the Class attribute with class binding
+ngClass directive
+
+Class binding with ClassName
+The ClassName is the property name of HTML Element. Hence we can make use of Property binding to assign the class name to any HTML element.
+
+The following example assigns CSS Class red to the div element.
+
+<div [className]="'red'">Test</div>
+ 
+You can also add more than one class by separating them using the
+
+ <div [className]="'red size20'">Test</div>
+HTML Class attribute
+You can also add class using the normal HTML way.
+
+ 
+<div class="red">red</div>
+ 
+but, mixing both class and [className] results in removal of class attribute. You cannot use both.
+
+ 
+<div class="red" [className]="'size20'">red</div>
+
+Conditionally apply Classes
+We can also bind the class name dynamically.
+
+To do that first create a variable in your component class.
+ 
+cssStringVar: string= 'red size20';
+ 
+And then use it in the Template as shown below.
+
+<div [className]="cssStringVar">Test</div>
+ 
+You can create a function, which returns the class based on some condition.
+
+ 
+getClass() {
+  return 'red';
+}
+ 
+and then use it in the template as shown below.
+
+
+<div [className]="getClass()">getClass</div>
+ 
+The following example uses the Conditional (Ternary) Operator.
+ 
+<div [className]="hasError() ? 'red' : 'size20'"> conditonal operator </div>
+ 
+Class binding with Class
+There are another shorthand way to bind CSS Class to HTML element.
+ 
+<div [class.<className>]="condition"></div>
+ 
+Where
+
+className is name of the class, which you want to bind to.
+
+condition must return true or false. A return value of true adds the class and a false removes the class.
+ red and size20 is added to the div element.
+
+ 
+<div [class.red]="true" [class.size20]="true">Test</div>
+ 
+ Conditionally binding class
+To dynamically or conditionally bind a class, First create a variable in the component class as shown below.
+
+ 
+ hasError:false;
+
+ 
+<div [class.red]="hasError" [class.size20]="hasError">Test</div>
+ 
+You can also create a function hasError(), which should return true or false as shown below.
+
+hasError() {
+   return false
+}
+ 
+And use it in the template as shown below.
+
+<div [class.red]="hasError()" [class.size20]="hasError()">Test</div>
+ Class binding with NgClass
+Another way to add class is to use the NgClass directive. It is offers a more flexibility, like easily adding multiple classes etc. You can read about ngClass in Angular.
+
+NgClass
+The ngClass directive adds and removes CSS classes on an HTML element. The syntax of the ngClass is as shown below.
+ 
+<element [ngClass]="expression">...</element>
+ 
+Where
+
+element is the DOM element to which class is being applied
+
+Example
+Add the following classes to the app.component.css
+
+
+.red { color: red; }
+.size20 { font-size: 20px; }
+ 
+Add the following to the app.template.html
+ 
+<div [ngClass]="'red size20'"> Red Text with Size 20px </div>
+ 
+The above example code adds the two CSS Classes red & size20 to the div element.
+
+You can also use the ngClass without a square bracket. In that case, the expression is not evaluated but assigned directly to the class attribute. We also need to remove the double quote around the expression as shown below.
+
+NgClass with Object
+You can also bind the ngClass to an object. Each property name of the object acts as a class name and is applied to the element if it is true. The syntax is as shown below
+
+ 
+<element [ngClass]="{'cssClass1': true, 'cssClass2': true}">...</element>
+ 
+Example of objects as CSS Classes
+
+
+<div class="row">     
+  <div [ngClass]="{'red':true,'size20':true}">Red Text with Size 20px</div>
+</div>
+ cssArray:string[]=['red','size20']; 
+ 
+And, then use it in ngClass directive
+
+<div class="row">
+  <div [ngClass]="cssArray">
+    Red Text with Size 20px  : from CSS Array
+  </div>
+</div>
+In the above example, an object is bound to the ngClass. The object has two properties red and size20. The property name is assigned to the div element as a class name.
+
+Event binding
+From View to Component
+Event Binding
+Event binding allows us to bind events such as keystrokes, clicks, hover, touch, etc to a method in component. It is one way from view to component. By tracking the user events in the view and responding to it, we can keep our component in sync with the view. For Example, when the user changes input in a text box, we can update the model in the component, run some validations, etc. When the user submits the button, we can then save the model to the backend server.
+
+Angular uses the following syntax for event binding
+
+<target-event)="TemplateStatement"
+
+Bind to an element property
+We can use it to bind to a property of the HTML element, a component, or a directive. in the following code, we bind to the style.color property of the <p> element. We can bind to any property that accepts a string.
+
+
+<p>Show me <span class = "{{giveMeRed}}">red</span></p>
+<p style.color={{giveMeRed}}>This is red</p>
+
+Directives
+//Template
+ 
+<p>items</p>
+<ul>
+  <li *ngFor="let d of items">
+    {{ d.name }}
+    </li>
+</ul>
+ 
+//Component
+  items= [
+    new item(1, 'Mobile'),
+    new item(2, 'Laptop'),
+    new item(3, 'Desktop'),
+    new item(4, 'Printer')
+  ]
+ 
+class item {
+  code:string
+  name:string
+ 
+  constructor(code,name) {
+    this.code=code;
+    this.name=name
+  }
+}
+
+
+Event binding
+app.component.html
+
+
+<h1 [innerText]="title"></h1>
+ 
+<h2>Example 1</h2>
+<button (click)="clickMe()">Click Me</button>
+<p>You have clicked {{clickCount}}</p>
+ 
+app.component.ts
+ 
+clickCount=0
+  clickMe() {
+    this.clickCount++;
+  }
+ $event Payload
+DOM Events carries the event payload. i.e the information about the event. We can access the event payload by using $event as an argument to the handler function.
+
+ 
+<input (input)="handleInput($event)">
+<p>You have entered {{value}}</p>
+ 
+Source Code
+
+And in the component
+
+value=""
+handleInput(event) {
+  this.value = (event.target.value);
+}
+ 
+
+
+The properties of a $event object vary depending on the type of DOM event. For example, a mouse event includes different information than an input box editing event.
+Template reference variable
+We can also make use of the template reference variable to pass the value instead of $event.
+
+In the template
+ 
+<h2>Template Reference Variable</h2>
+<input #el (input)="handleInput1(el)">
+<p>You have entered {{val}}</p>
+ 
+val="";
+handleInput1(element) {
+  this.val=element.value;
+}
+ 
+The ngModel directive is not part of the Angular Core library. It is part of the FormsModule library. You need to import the FormsModule package into your Angular module.
+
+
+<input type="text" name="value" [(ngModel)]="value">
+ 
+The ngModel directive placed inside the square & parentheses as shown above. This is assigned to the Template Expression. Template Expression is the property in the component class
+
+ngModel Example
+Import FormsModule
+import { FormsModule } from '@angular/forms';
+ 
+<h2>Example 2</h2>
+<input type="text" name="value" [(ngModel)]="value">
+<p> You entered {{value}}</p>
+<button (click)="clearValue()">Clear</button>
+ 
+Component
+
+ value="";
+ clearValue() {
+   this.value="";
+ }
+ 
+What is Angular Directive
+The Angular directive helps us to manipulate the DOM. You can change the appearance, behavior, or layout of a DOM element using the Directives. They help you to extend HTML
+
+There are three kinds of directives in Angular:
+
+Component Directive
+Structural directives
+Attribute directives
+Component Directive
+Components are special directives in Angular. They are the directive with a template (view)
+Structural Directives
+Structural directives can change the DOM layout by adding and removing DOM elements. All structural Directives are preceded by Asterix symbol
+
+Commonly used structural directives
+ngFor
+The ngFor is an Angular structural directive, which repeats a portion of the HTML template once per each item from an iterable list (Collection)
+var=2
+switch(var)
+{
+case 1: 
+print(1);
+break
+case 2:
+print(2);
+default:
+
+}
+ngSwitch
+The ngSwitch directive lets you add/remove HTML elements depending on a match expression. ngSwitch directive used along with ngSwitchCase and ngSwitchDefault
+
+<div [ngSwitch]="Switch_Expression"> 
+    <div *ngSwitchCase="MatchExpression1”> First Template</div>
+    <div *ngSwitchCase="MatchExpression2">Second template</div> 
+    <div *ngSwitchCase="MatchExpression3">Third Template</div> 
+    <div *ngSwitchCase="MatchExpression4">Third Template</div> 
+    <div *ngSwitchDefault?>Default Template</div>
+</div>
+ 
+
+
+ngIf
+The ngIf Directives is used to add or remove HTML elements based on an expression. The expression must return a boolean value. If the expression is false then the element is removed, else the element is inserted
+
+Example of ngIf
+ 
+<div *ngIf="condition"> 
+    This is shown if condition is true
+</div>
+Attribute Directives
+An Attribute or style directive can change the appearance or behavior of an element.
+
+Commonly used Attribute directives
+ngModel
+The ngModel directive is used the achieve the two-way data binding. We have covered ngModel directive in Data Binding in Angular Tutorial
+
+ngClass
+The ngClass is used to add or remove the CSS classes from an HTML element. Using the ngClass one can create dynamic styles in HTML pages
+
+Example of ngClass
+
+<div [ngClass]="'first second'">...</div>
+ 
+ngStyle
+ngStyle is used to change the multiple style properties of our HTML elements. We can also bind these properties to values that can be updated by the user or our components.
+
+Example of ngStyle
+ 
+<div [ngStyle]="{'color': 'blue', 'font-size': '24px', 'font-weight': 'bold'}">
+    some text
+</div>
+ ngswitch
+create a variable num in your Angular Component class
+num: number= 0;
+ 
+
+<div class='card'>
+  <div class='card-header'>
+    ngSwitch Example
+  </div>
+  <div class="card-body">
+    Input string : <input type='text' [(ngModel)]="num" />
+ 
+    <div [ngSwitch]="num">
+      <div *ngSwitchCase="'1'">One</div>
+      <div *ngSwitchCase="'2'">Two</div>
+      <div *ngSwitchCase="'3'">Three</div>
+      <div *ngSwitchCase="'4'">Four</div>
+      <div *ngSwitchCase="'5'">Five</div>
+      <div *ngSwitchDefault>This is Default</div>
+    </div>
+  </div>
+</div>
+ 
+Now let us examine the code in detail
+
+Input string : <input type='text' [(ngModel)] ="num"/>
+ 
+We bind the num variable to the input box.
+ 
+<div [ngSwitch]="num">
+We attach the ngSwitch directive to the div element, then bind it to the expression num.
+
+
+<div *ngSwitchCase="'1'">One</div>
+ 
+Next, we have a few ngSwitchCase directives attached to the div element with matching expressions “1”,”2” etc. Whenever the num matches these expressions, the ngSwitchCase displays the element attached to it else it removes it from DOM.
+ 
+<div *ngSwitchDefault>This is Default</div>
+ 
+<p *ngIf="condition">
+    content to render, when the condition is true 
+</p>
+The ngIf is attached to a DOM element ( p element in the above example). ngIf is a structural directive, which means that you can add it to any element like div, p, h1, component selector, etc. Like all structural directive, it is prefixed with * asterisk.
+if(condition)
+{
+}
+else
+{}
+<div *ngIf="condition; else elseBlock">
+    content to render, when the condition is true 
+</div>
+ 
+<ng-template #elseBlock>
+    content to render, when the condition is false 
+</ng-template>
+
+ngIf then else
+You can also define then else block using the ng-template
+
+<div *ngIf="condition; then thenBlock else elseBlock"> 
+    This content is not shown
+</div>
+ 
+<ng-template #thenBlock>
+    content to render when the condition is true.
+</ng-template>
+ 
+<ng-template #elseBlock>
+    content to render when condition is false.
+</ng-template>
+
+Component Class
+Create a boolean variable showMe in your app.component.ts class as shown below
+
+
+import { Component } from '@angular/core';
+ 
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title: string = 'ngIf Example' ;
+  showMe: boolean;
+}
+ 
+<h1>Simple example of ngIf </h1>
+ 
+ 
+<div class="row">
+  Show <input type="checkbox" [(ngModel)]="showMe" />
+</div>
+ 
+<h1>ngIf </h1>
+ 
+<p *ngIf="showMe">
+  ShowMe is checked
+</p>
+<p *ngIf="!showMe">
+  ShowMe is unchecked
+</p>
+ 
+<h1>ngIf Else</h1>
+ 
+<p *ngIf="showMe; else elseBlock1">
+  ShowMe is checked
+</p>
+ 
+<ng-template #elseBlock1>
+  <p>ShowMe is unchecked Using elseBlock</p>
+</ng-template>
+ 
+<h1>ngIf then else</h1>
+ 
+<p *ngIf="showMe; then thenBlock2 else elseBlock2">
+  This is not rendered
+</p>
+ 
+<ng-template #thenBlock2>
+  <p>ShowMe is checked Using thenblock</p>
+</ng-template>
+ 
+<ng-template #elseBlock2>
+  <p>ShowMe is unchecked Using elseBlock</p>
+</ng-template>
+ 
+<h1>using hidden </h1>
+ 
+<p [hidden]="showMe">
+    content to render, when the condition is true  using hidden property binding
+</p>
+ 
+<p [hidden]="!showMe">
+    content to render, when the condition is false. using hidden property binding
+</p>
+ 
+Show <input type="checkbox" [(ngModel)] ="showMe"/>
+ 
+This is a simple checkbox bound to showMe variable in the component
+<div *ngIf="showMe">
+    ShowMe is checked
+</div>
+ 
+The ngIf directive is attached to the div element. It is then bound to the expression “showMe”. The expression is evaluated and if it is true, then the div element is added to the DOM else it is removed from the DOM.
+
+
+<p *ngIf="showMe; else elseBlock1">
+  ShowMe is checked
+</p>
+ 
+<ng-template #elseBlock1>
+  <p>ShowMe is checked Using elseBlock</p>
+</ng-template>
+ 
+ 
+<p *ngIf="showMe; then thenBlock2 else elseBlock2">
+  This is not rendered
+</p>
+ 
+<ng-template #thenBlock2>
+  <p>ShowMe is checked Using thenblock</p>
+</ng-template>
+ 
+<ng-template #elseBlock2>
+  <p>ShowMe is unchecked Using elseBlock</p>
+</ng-template>
+ 
+If then else example. Note that the content of p element, to which ngIf is attached is never rendered
+
+<h1>using hidden </h1>
+ 
+<p [hidden]="showMe">
+    content to render, when the condition is true  using hidden property binding
+</p>
+ 
+<p [hidden]="!showMe">
+    content to render, when the condition is false. using hidden property binding
+</p>
+ 
+The property binding on the hidden attribute. You can open the developer console and see that the Angular renders both the elements. But mark one of them as visible and the other one as hidden.
+
