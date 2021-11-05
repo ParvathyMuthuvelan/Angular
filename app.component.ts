@@ -15,7 +15,8 @@ export class AppComponent {
   cssStringVar: string= 'red size20';
   hasError:boolean =false;
   cssArray:string[]=['red','size20']; 
-
+  num:number=50;
+  showMe: boolean=false;
   items= [
     new item(1, 'Mobile'),
     new item(2, 'Laptop'),
@@ -57,6 +58,11 @@ isError()
     onSave(event:any){    
       console.log("Save button is clicked!"+ event.target);    
     }    
+
+    val="";
+    handleInput1(element:any) {
+      this.val=element.value;
+    }
 }
 
 
