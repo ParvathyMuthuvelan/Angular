@@ -60,6 +60,26 @@
 <h3>One to way binding</h3>
     <input type="text" name="value" value={{name}}>
    
+<h1> Event binding</h1>
+<button (click)="clickMe()">Click Me</button>
+<p>You have clicked {{clickCount}}</p>
+
+ <h1>
+Event Payload - $event - click event 
+</h1>
+<input type="text" (click)="show($event)" value="hello">
+
+<h1>
+  Event Payload - $event - keyup event 
+  </h1>
+<input type="text" (keyup)="displayText($event)">  
+  
+<p>{{text}}</p>
+<h1>
+  Event Payload - $event - click event 
+  </h1>
+<button (click)="onSave($event)">Save</button>
+
 
     <p>items</p>
 <ul>
