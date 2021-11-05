@@ -17,6 +17,10 @@ export class AppComponent {
   cssArray:string[]=['red','size20']; 
   num:number=50;
   showMe: boolean=false;
+  todaydate = new Date();
+   jsonval = {name:'Rox', age:'25', address:{a1:'Mumbai', a2:'Karnataka'}};
+   months = ["Jan", "Feb", "Mar", "April", "May", "Jun",
+             "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
   items= [
     new item(1, 'Mobile'),
     new item(2, 'Laptop'),
