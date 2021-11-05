@@ -1,0 +1,60 @@
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
+<!-- * * * * * * * to get started with your project! * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+
+
+
+    <span>{{ title }} app is running!</span>
+    <h3>Welcome {{name}}</h3>
+
+    
+    <h2>Mathematical Operations - Interpolation</h2>
+     
+    <p>100x80 = {{ 100*80 }}</p>
+    <p>Maximum: {{ max(100, 200) }}</p>
+    <p>Title: {{ getTitle() }}</p>
+    
+<h2>Property Binding </h2>
+    <h3 [innerText]="title"></h3>
+    <p [innerText]="name"></p>
+    <button [disabled]="isDisabled">I am disabled</button>
+    <button [disabled]="isEnabled">I am enabled</button>
+     <div class="red">Html css class</div>
+    <div [className]=" 'red' ">Class binding - with Angular</div>
+    <div [className]="'red size20'">Class bindig- More than one class</div>
+    <div [ngClass]="'red size20'"> Class bindig- ngClass directive </div>
+    <div [ngClass]="{'red':false,'size20':true}">Class bindig- ngClass directive</div>
+    <div [ngClass]="{'red':true,'size20':false}">Class bindig- ngClass directive</div>
+    <div [ngClass]="{'red':true,'size20':true}">Class bindig- ngClass directive</div>
+
+
+    <input type="text" name="value" [(ngModel)]="name">
+    {{name}}
+
+
+    <p>items</p>
+<ul>
+  <li *ngFor="let d of items">
+    {{ d.itemName }}
+    </li>
+</ul>
+    
+
+
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+
+
+<router-outlet></router-outlet>
