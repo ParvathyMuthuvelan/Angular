@@ -1,0 +1,41 @@
+<p>register works!</p>
+<form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)">
+ 
+    <p>
+      <label for="firstname">First Name</label>
+      <input type="text" name="firstname" ngModel>
+    </p>
+   
+    <p>
+      <label for="lastname">Last Name</label>
+      <input type="text" name="lastname" ngModel>
+    </p>
+   
+    <p>
+      <label for="email">Email </label>
+      <input type="text" id="email" name="email" ngModel>
+    </p>
+   
+    <p>
+      <label for="gender">Geneder</label>
+      <input type="radio" value="male" name="gender" ngModel> Male
+      <input type="radio" value="female" name="gender" ngModel> Female
+    </p>
+   
+    <p>
+      <label for="isMarried">Married</label>
+      <input type="checkbox" name="isMarried" ngModel>
+    </p>
+   
+    <select name="country" ngModel>
+      <option [ngValue]="c.id" *ngFor="let c of countryList">
+        {{c.name}}
+      </option>
+    </select>
+   
+    <p>
+      <button type="submit">Submit</button>
+    </p>
+    
+  </form>
+   
