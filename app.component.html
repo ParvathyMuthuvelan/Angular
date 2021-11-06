@@ -10,7 +10,7 @@
 
 
 
-    <span>{{ title }} app is running!</span>
+    <!--<span>{{ title }} app is running!</span>
     <h3>Welcome {{name}}</h3>
 
     
@@ -168,7 +168,7 @@ Event Payload - $event - click event
       <h1>Percent Pipe</h1>
       <b>{{00.54565 | percent}}</b>
       <h1>Slice Pipe</h1>
-      <b>{{months | slice:2:6}}</b> 
+      <b>{{months | slice:2:6}}</b> -->
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
@@ -178,6 +178,11 @@ Event Payload - $event - click event
 <!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
-
-
+<!--<app-employeelistcomponent></app-employeelistcomponent>
+App component loaded-->
+<!--<app-child></app-child> -->
+<nav>
+  <a class="button" routerLink="/add">Add</a> |
+  <a class="button" routerLink="/employees">Employees List</a>
+</nav>
 <router-outlet></router-outlet>
