@@ -1,0 +1,39 @@
+<h2 class="mb-5 text-center">Registration Form</h2>
+
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()" novalidate>
+
+  <div class="form-group">
+    <label>Name</label>
+    <input type="text" class="form-control" formControlName="name">
+    <div *ngIf="getControl.name?.touched && getControl.name?.invalid" class="text-danger">
+      <div *ngIf="getControl.name.errors?.required">Name is required.</div>
+      <div *ngIf="getControl.name.errors?.minlength">Minimum 4 character are required.</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Email</label>
+    <input type="email" class="form-control" formControlName="email">
+    <div *ngIf="getControl.email?.touched && getControl.email?.invalid" class="text-danger">
+      <div *ngIf="getControl.email.errors?.required">Email is required.</div>
+      <div *ngIf="getControl.email.errors?.email">Email seems invalid.</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Phone</label>
+    <input type="text" class="form-control" formControlName="phone">
+    <div *ngIf="getControl.phone?.touched && getControl.phone?.invalid" class="text-danger">
+      <div *ngIf="getControl.phone.errors?.required">Phone is required.</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Message</label>
+    <textarea type="text" class="form-control" formControlName="message"></textarea>
+    <div *ngIf="getControl.message?.touched && getControl.message?.invalid" class="text-danger">
+      <div *ngIf="getControl.message.errors?.required">Message is required.</div>
+    </div>
+  </div>
+  <button class="btn btn-danger btn-block" type="submit">Submit</button>
+</form>
