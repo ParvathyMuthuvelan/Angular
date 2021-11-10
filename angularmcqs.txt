@@ -1,0 +1,626 @@
+https://www.freetimelearning.com/online-quiz/angular-quiz.php
+
+Which of the following can be used to run unit tests?
+1.      Karma
+2.      Protractor
+The correct answer is - Karma!
+
+Which of the following can be used to run end-to-end tests?
+1.      Karma
+2.      Protractor
+The correct answer is - Protractor!
+
+Test doubles are needed when writing which of the following?
+1.      Unit tests
+2.      End-to-end tests
+The correct answer is - Unit tests!
+
+
+Which of the following is correct about TypeScript?
+
+A) Angular is based on TypeScript.
+B) This is a superset of JavaScript.
+C) TypeScript is maintained by Microsoft.
+D)All of the above.
+
+2 .
+What is .subscribe?
+A) Streams data in asynchronously
+B) Streams data in synchronously
+C)Both
+D)None of above
+3 .
+What does AOT stand for?
+A)Ahead-Of-Time Compilation
+B)Angular Object Templates
+C)Both
+D)None of above
+
+4 .Which of the following is not a hook application life cycle?
+A)ngOnChanges
+B)ngViewStart
+C)ngOnInit
+D)None of the above
+5 .Router is part of which of the following module?
+A)@angular/core
+B)@angular/router
+C)Both
+D)None of the above
+6 .
+RxJS can be used for?
+A)Browser
+B)Server Side
+C)Both
+D)None of the above
+
+7 .Which angular decorator allows us to define the pipe name that is globally available for use in any template in the across application?
+A)pipeName
+B)pipeDeco
+C)Pipe
+D)None of the above
+8 .What is the decorator used for configuring your module class?
+A)@NgModule
+B)@NgApp
+C)Both
+D)None of the above
+9 .What is used .angular-cli.json
+A)Used to link external files
+B)Used to configure your angular  project
+C)used to install required project packages
+D)None of the above
+
+10 .Which file is responsible for startup of angular 2 project ?
+
+A)main.ts
+B)index.js
+C)app.ts
+D)angular.cli.json
+
+
+Which of the following is the correct way to apply a filter?
+
+A)
+Property-value | filter
+
+B)
+Property-value || filter
+
+C)
+Property-value && filter
+
+D)
+None of the above
+2 .
+Interpolation in angular 2 is done using
+
+A)
+{{}}
+
+B)
+{{{}}}
+
+C)
+{{|var}}
+
+D)
+!!!!
+3 .
+Which of the following filter is used to convert input to all uppercase?
+
+A)
+upper
+
+B)
+uppercase
+
+C)
+toUpper
+
+D)
+None of the above
+4 .
+Which of the following is not a hook in Angular 2 application life cycle.
+
+A)
+ngOnInit
+
+B)
+ngOnChanges
+
+C)
+ngAfterViewInit
+
+D)
+ngViewStart
+5 .
+Which of the following service has Angular 2, that allows us to dynamically load a component in a certain position on the page?
+
+A)
+DynamicComponentLoader
+
+B)
+DynamicControlLoader
+
+C)
+DynamicControllerLoader
+
+D)
+None of the above
+6 .
+Which of the following option is using Angular 2 to detect changes.
+
+A)
+Scope.js
+
+B)
+zone$.js
+
+C)
+zone.js
+
+D)
+zones.js
+7 .
+Needs cleanup step before compiling
+
+A)
+Need to maintain AOT version of bootstrap file
+
+B)
+Works only with HTML and CSS
+
+C)
+Detect error at build time
+
+D)
+None of the above
+8 .
+Which of the following is not a feature of Angular 2?
+
+A)
+Components
+
+B)
+Multithread
+
+C)
+TypeScript
+
+D)
+Services
+9 .
+To start working with Angular 2, we need to install the _____________components.
+
+A)
+Npm
+
+B)
+Editor
+
+C)
+GIT
+
+D)
+All of the above
+10 .
+Which of the following option is correct about tsconfig.json?
+
+A)
+This file contains information about Angular 2 project.
+
+B)
+This file contains the system files required for Angular JS application.
+
+C)
+This file is used to give the options about TypeScript used for the Angular JS project.
+
+D)
+All of the above
+
+
+How does Angular 4 improved error handling, when an error is caused by something in a template?
+
+A)
+By enabling TypeScript's StrictNullChecks
+
+B)
+By creating flattened versions of Angular modules
+
+C)
+By generating source maps in terms of original template
+
+D)
+None of the above
+2 .
+Observables help you manage . . . . . . . . data.
+
+A)
+synchronous
+
+B)
+asynchronous
+
+C)
+Both  ( synchronous & asynchronous )
+
+D)
+None of the above
+3 .
+Where would you put it?
+
+A)
+In the Component
+
+B)
+In the Template
+
+C)
+In the Injectable decorator
+
+D)
+In the module
+4 .
+How would you display a list of Employees on a webpage along with where they were in the list?
+
+A)
+Loop through and print the index
+
+B)
+Loop through and print the employees
+
+C)
+Pass both the index and the employee to a web service
+
+D)
+Loop through and print the index and the employee
+5 .
+If you chain multiple pipes together, they are executed
+
+A)
+in parallel
+
+B)
+LIFO order
+
+C)
+in the order in which you specify them
+
+D)
+None of the above
+6 .
+The number pipe is location sensitive, which means that the same format argument will produce differently formatted results based on the . . . . . . .
+
+A)
+user's format setting
+
+B)
+user's locale setting
+
+C)
+user's currency setting
+
+D)
+All of the above
+7 .
+How would you retrieve a list of items from a server's URL?
+
+A)
+Create a URL transaction
+
+B)
+Use the HTTP get method
+
+C)
+Create a get SQL statement
+
+D)
+Use an HTTP package
+8 .
+Which of the following is not built-in pipe in Angular?
+
+A)
+DatePipe
+
+B)
+CurrencyPipe
+
+C)
+DataPipe
+
+D)
+PercentPipe
+9 .
+How would you debug and evaluate the response of the http.get function (using HttpClient) using a debugger?
+
+A)
+You cannot place breakpoints on asynchronous operators
+
+B)
+Place a breakpoint on the function that calls the http.get
+
+C)
+Place a breakpoint on the http.get
+
+D)
+Place a breakpoint inside one of the functions inside the pipe call
+10 .
+What does this syntax do? routerLink="/crisis-center"
+
+A)
+It navigates to the component with a name matching the assigned string
+
+B)
+It links a route to a service by matching the assigned string to a service class name
+
+C)
+It links a route with data by matching the assigned string to a property name
+
+D)
+It navigates to the component with a path matching the assigned string
+
+What is the correct syntax to associate an external template file orders.component.html to an OrdersComponent , when both are in the same orders/ folder?
+
+A)
+@Component({
+  templateUrl: './orders.component.html'
+})
+
+B)
+@Component({
+  template: './orders.component.html'
+})
+
+C)
+@Component({
+  templateUrl: './orders/orders.component.html'
+})
+
+D)
+@Component({
+template: `
+ ./orders/orders.component.html`
+})
+2 .
+The purpose of the providers array of an Angular module is to define the set of:
+
+A)
+libraries used by the application including Angular system and third-party libraries.
+
+B)
+objects available for dependency injection.
+
+C)
+components that the application provides to other parts of the application.
+
+D)
+components, custom directives, and custom pipes.
+3 .
+What command will create a new Angular app with a root routing module?
+
+A)
+ng new my-dream-app --routing
+
+B)
+ng new my-dream-app --module
+
+C)
+ng generate my-dream-app --routing
+
+D)
+ng generate my-dream-app
+4 .
+You apply a style selector in a component's CSS file. Which matching elements will be affected?
+
+A)
+All matching elements in the application
+
+B)
+All matching elements in the component and its child components
+
+C)
+All matching elements in the module
+
+D)
+All matching elements in the component, only
+5 .
+How would you write code to modify the response from an http.get ?
+
+A)
+Using the modify operator chained to the http.get
+
+B)
+Using the map function inside of the pipe operator chained to the http.get
+
+C)
+Using the transform operator chained to the http.get
+
+D)
+Subscribing to the http.get and setting the response to a local variable
+6 .
+Where would the following code likely be found in an Angular application? routerLink="/crisis-center"
+
+A)
+In the component metadata
+
+B)
+In a service
+
+C)
+In the template
+
+D)
+In the component class
+7 .
+What is a routerOutlet?
+
+A)
+A directive defined in the HTML identifying the route to activate
+
+B)
+A directive defined in the HTML indicating where a route's view should display
+
+C)
+A decorator defining the template to display when a route is activated
+
+D)
+A property of a component class used to activate a route
+8 .
+According to the Angular Style Guide, what type of code should a component delegate to a service?
+
+A)
+Event handlers
+
+B)
+Complex logic
+
+C)
+DOM manipulation
+
+D)
+Debugging logic
+9 .
+How do you load an NgModule into its own bundle?
+
+A)
+Use lazy loading with the route that leads to the NgModule
+
+B)
+Add a route to each component in the NgModule
+
+C)
+Tell the route to point to the symbol of the NgModule
+
+D)
+ng build --lazy
+10 .
+What advantage does AOT give your app with regard to compilation?
+
+A)
+Precompiles when the code is served, instead of in the browser
+
+B)
+Precompiles at build time, instead of in the browser
+
+C)
+Tree shakes all unused code when the app is served
+
+D)
+Compiles in the browser
+
+
+Which is the correct command to create a component named CustomerDetailComponent with the CLI (with this exact casing)?
+
+A)
+ng generate component customerdetail
+
+B)
+ng create component customer-detail
+
+C)
+ng c c customer-detail
+
+D)
+ng generate component customer-detail
+2 .
+What is the purpose of FormBuilder?
+
+A)
+Generates the form elements from data properties in the component class
+
+B)
+Creates the form data structure from a specified configuration when building reactive forms
+
+C)
+Creates the form data structure from a specified configuration when building template-driven forms
+
+D)
+Creates the form data structure from a specified configuration when building template-driven forms
+3 .
+Which Angular CLI flag will not generate unit tests for a component?
+
+A)
+--spec false
+
+B)
+--testing false
+
+C)
+--unit-test false
+
+D)
+--test false
+4 .
+Which of the following will map the name of an input parameter "userData" to a field named "users"?
+
+A)
+@Input('userData') users
+
+B)
+@Input() userData: users
+
+C)
+@Input() users: userData
+
+D)
+@Input('users') userData
+5 .
+When using FormBuilder, how are validation rules specified?
+
+A)
+As part of the FormControl configuration: heroName: ['', Validators.required]
+
+B)
+As part of the FormControl configuration: heroName: [Validators.required, '']
+
+C)
+As standard HTML validation attributes added to the input element
+
+D)
+As part of the input element binding: formControl="[heroName, Validators.required]"
+
+
+Which of the following will need Angular testing utilities for unit testing?
+1.      Services
+2.      Components
+3.      All the above
+The correct answer is - Components!
+
+It is recommended to write isolated unit tests for which of the following?
+1.      Services
+2.      Pipes
+3.      All the above
+The correct answer is - All the above!
+
+Which of the following TestBed method is used to create an Angular component under test?
+1.      createComponent
+2.      createTestingComponent
+3.      configureComponent
+4.      configureTestingComponent
+
+ The . . . . . decorator allows us to define the pipe name that is globally available for use in any template in the across application.
+A. pipeName B. pipeDeco C. Pipe D. None
+Answer - C
+
+Observables help you manage . . . . . . . . data.
+A. synchronous B. asynchronous C. Both asynchronous & synchronous D. None of above
+Answer - c
+
+How would you display a list of Employees on a webpage along with where they were in the list?
+A. Loop through and print the indexB. Loop through and print the employeesC. Loop through and print the index and the employeeD. Pass both the index and the employee to a web servic
+Answer -c
+
+ If you chain multiple pipes together, they are executed
+A. in parallel B. LIFO order C. in the order in which you specify them D. None of above
+Answer -c
+
+ We can subscribe to an observable using the . . . . . . . . The benefit of this is that Angular deals with your subscription during the lifecycle of a component. Angular will automatically subscribe and unsubscribe for you.
+A. sync pipe B. async var C. async pipe D. syn var
+Answer -c
+
+ The number pipe is location sensitive, which means that the same format argument will produce differently formatted results based on the . . . . . . .
+A. user's format setting B. user's currency setting C. user's locale setting D. All of above
+Answer - c
+
+ Which of the following is not built-in pipe in Angular?
+A. DatePipe B. CurrencyPipe C. DataPipe D. PercentPipe
+Answer - a

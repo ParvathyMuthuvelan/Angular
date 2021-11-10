@@ -1,0 +1,56 @@
+Angular Component lifecycle hooks
+When the angular application starts it creates and renders the root component. It then creates and renders its Childrens & their children. It forms a tree of components.
+
+Once Angular loads the components, it starts the process of rendering the view.  To do that it needs to check the input properties, evaluate the data bindings & expressions, render the projected content etc. Angular also removes the component from the DOM, when it is no longer needs it.
+
+The Angular life cycle hooks are nothing but callback function, which angular invokes when a certain event occurs during the component’s life cycle.
+
+ngOnChanges
+ngOnInit
+ngDoCheck
+ngAfterContentInit
+ngAfterContentChecked
+ngAfterViewInit
+ngAfterViewChecked
+ngOnDestroy
+
+Change detection Cycle
+Change detection is the mechanism by which angular keeps the template in sync with the component
+
+Constructor
+Life Cycle of a component begins, when Angular creates the component class. First method that gets invoked is class Constructor.
+
+Angular makes use of a constructor to inject dependencies.
+
+ngOnChanges
+The Angular invokes ngOnChanges life cycle hook whenever any data-bound input property of the component or directive changes. Initializing the Input properties is the first task that angular carries during the change detection cycle. And if it detects any change in property, then it raises the ngOnChanges hook. It does so during every change detection cycle. This hook is not raised if change detection does not detect any changes.
+
+Input properties are those properties, which we define using the @Input decorator. It is one of the ways by which a parent communicates with the child component.
+
+The change detector checks if such input properties of a component are changed by the parent component. If it is then it raises the ngOnChanges hook.
+
+ngOnInit
+The Angular raises the ngOnInit hook, after it creates the component and updates its input properties. It raises it after the ngOnChanges hook.
+
+This hook is fired only once and immediately after its creation (during the first change detection).
+
+ngDoCheck
+The Angular invokes the ngDoCheck hook event during every change detection cycle. This hook is invoked even if there is no change in any of the properties.
+
+Angular invokes it after the ngOnChanges & ngOnInit hooks.
+ngAfterContentInit
+ngAfterContentInit Life cycle hook is called after the Component’s projected content has been fully initialized. 
+
+ngAfterContentChecked
+ngAfterContentChecked Life cycle hook is called during every change detection cycle after Angular finishes checking of component’s projected content.
+
+ngAfterViewInit
+ngAfterViewInit hook is called after the Component’s View & all its child views are fully initialized. Angular also updates the properties decorated with the ViewChild & ViewChildren properties before raising this hook. 
+
+ngAfterViewChecked
+The Angular fires this hook after it checks & updates the component’s views and child views. This event is fired after the ngAfterViewInit and after that during every change detection cycle.ngAfterViewChecked is raised during every change detection cycle. While ngAfterViewInit during the first change detection cycle.
+
+ngOnDestroy
+This hook is called just before the Component/Directive instance is destroyed by Angular
+
+You can Perform any cleanup logic for the Component here. 
