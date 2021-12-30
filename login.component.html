@@ -1,0 +1,29 @@
+<form name="form" #loginForm="ngForm" (ngSubmit)="loginForm.form.valid && onSubmit()" >
+   <div *ngIf="hasLoginFailed" class="alert alert-danger">  {{message}} </div>
+    <div class="form-group">
+        <label for="username">User Name</label>
+        <input required minlength="3" maxlength="10" #userName=ngModel name="username" type="text" class="form-control" id="username" [(ngModel)]="user.username" name="username" >
+<div class="alert alert-danger" *ngIf="userName.touched && !userName.valid">
+  
+   
+            <div *ngIf="userName.errors.required">User Name is required.</div>
+  
+   
+            <div *ngIf="userName.errors.minlength">User Name is minimum {{ userName.errors.minlength.requiredLength }} character.</div>
+            <div *ngIf="userName.errors.maxlength">User Name is maximum 10 character.</div>
+        </div>
+    </div>
+     
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input required name="password" type="password" #password="ngModel" class="form-control" id="password" [(ngModel)]="user.password" name="password">
+       <div class="alert alert-danger" *ngIf="password.touched && !password.valid">
+            Password is required.
+        </div>
+    </div>
+     
+   
+      
+    <button class="btn btn-primary" type="submit" >Submit</button>
+    
+  </form>
