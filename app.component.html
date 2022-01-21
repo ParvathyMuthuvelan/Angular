@@ -10,165 +10,69 @@
 
 
 
-    <!--<span>{{ title }} app is running!</span>
-    <h3>Welcome {{name}}</h3>
+    <span>{{ title }} app is running!</span>
+    <br>
 
-    
-    <h2>Mathematical Operations - Interpolation</h2>
-     
+    Welcome {{ name }}
+
     <p>100x80 = {{ 100*80 }}</p>
-    <p>Maximum: {{ max(100, 200) }}</p>
-    <p>Title: {{ getTitle() }}</p>
-    
-<h2>Property Binding </h2>
-    <h3 [innerText]="title"></h3>
-    <p [innerText]="name"></p>
+   
+    <p> Calling function.  {{ getTitle()}} </p>
+<h3>Property Binding</h3>
     <button [disabled]="isDisabled">I am disabled</button>
     <button [disabled]="isEnabled">I am enabled</button>
-     <div class="red">Html css class</div>
+    <h3 [innerText]="title"></h3>
+    <p [innerText]="name"></p>
+
+    <div class="red">Html css class</div>
     <div [className]=" 'red' ">Class binding - with Angular</div>
     <div [className]="'red size20'">Class bindig- More than one class</div>
-    <div [ngClass]="'red size20'"> Class bindig- ngClass directive </div>
-    <div [ngClass]="{'red':false,'size20':true}">Class bindig- ngClass directive</div>
-    <div [ngClass]="{'red':true,'size20':false}">Class bindig- ngClass directive</div>
-    <div [ngClass]="{'red':true,'size20':true}">Class bindig- ngClass directive</div>
 
     <div [className]="cssStringVar">Class binding - dynamically with property</div>
-    <div [ngClass]="cssStringVar">Class binding - dynamically set</div>
 
     <div [className]="getClass()">Class binding with function</div>
+
     <div [className]="hasError ? 'red' : 'green'"> Ternary operator with property</div>
+
     <div [className]="isError() ? 'red' : 'green'"> Ternary operator with function</div>
 
     <div [class.red]="true" [class.size20]="false">conditionally binding class</div>
-    <div [class.red]="hasError" [class.size20]="hasError">conditionally binding class</div>
-    <div [ngClass]="cssArray">
-     Class binding with css defined in Array
-    </div>
 
-    <p [style.color]="'red'">Style binding</p>
-    <p [style.background-color]="'grey'">Style binding</p>
-    <p [ngStyle]="{'color': 'green'}">Style binding - ngStyle</p>
-    <p [style.color]="hasError ? 'red' : 'green'">Style binding - property</p>
-    <p [style.color]="isError() ? 'red' : 'green'">Style binding - function</p>
-    <h3> Two way binding</h3>
-    {{name}}
-    <input type="text" name="value" [(ngModel)]="name"><br>
-    After changing name,
-    {{name}}
-<br>
-<h3>One to way binding</h3>
-    <input type="text" name="value" value={{name}}>
-   
-<h1> Event binding</h1>
+    <div [class.red]="hasError" [class.size20]="hasError">conditionally binding class</div>
+
+   <div [ngClass]="'red size20'"> Class bindig- ngClass directive </div>
+    <div [ngClass]="{'red':false,'size20':true}">Class bindig- ngClass directive</div>
+    <div [ngClass]="{'red':true,'size20':false}">Class bindig- ngClass directive</div>
+    <div [ngClass]="{'red':true,'size20':true}">Class bindig- ngClass directive</div>
+    <div [ngClass]="cssStringVar">Class binding - dynamically set</div>
+    <div [ngClass]="cssArray">
+        Class binding with css defined in Array
+       </div>
+
+       <p [style.color]="'red'">Style binding</p>
+       <p [style.background-color]="'grey'">Style binding</p>
+       <p [ngStyle]="{'color': 'green'}">Style binding - ngStyle</p>
+       <p [style.color]="hasError ? 'red' : 'green'">Style binding - property</p>
+       <p [style.color]="isError() ? 'red' : 'green'">Style binding - function</p>
+
+       <h1> Event binding</h1>
 <button (click)="clickMe()">Click Me</button>
 <p>You have clicked {{clickCount}}</p>
 
- <h1>
-Event Payload - $event - click event 
-</h1>
-<input type="text" (click)="show($event)" value="hello">
+<h3>One way binding</h3>
+{{name}}
+ Name    <input type="text" name="value" value={{name}}>
+ After changing name,
+ {{name}}
+ 
 
-<h1>
-  Event Payload - $event - keyup event 
-  </h1>
-<input type="text" (keyup)="displayText($event)">  
-  
-<p>{{text}}</p>
-<h1>
-  Event Payload - $event - click event 
-  </h1>
-<button (click)="onSave($event)">Save</button>
+ <h3> Two way binding</h3>
+ {{name}}
+ <input type="text" name="value" [(ngModel)]="name" value={{name}}><br>
+ After changing name,
+ {{name}}
 
-<h2>Template Reference Variable</h2>
-<input #refvar (input)="handleInput1(refvar)">
-<p>You have entered {{val}}</p>
-
-
-<h1>Angular - Structural directives</h1>
-<h3>ngSwitch</h3>
-<div >
-  Input string : <input type='text' [(ngModel)]="num" />
-
-  <div [ngSwitch]="num">
-    <div *ngSwitchCase="'1'">One</div>
-    <div *ngSwitchCase="'2'">Two</div>
-    <div *ngSwitchCase="'3'">Three</div>
-    <div *ngSwitchCase="'4'">Four</div>
-    <div *ngSwitchCase="'5'">Five</div>
-    <div *ngSwitchDefault>This is Default</div>
-  </div>
-
-  <div >
-    Show <input type="checkbox" [(ngModel)]="showMe" />
-  </div>
-   
-  <h3>ngIf </h3>
-   
-  <p *ngIf="showMe">
-    ShowMe is checked
-  </p>
-  <p *ngIf="!showMe">
-    ShowMe is unchecked
-  </p>
-
-  <h3>ngIf - else</h3>
-   
-  <p *ngIf="showMe; else elseBlock1">
-    ShowMe is checked
-  </p>
-   
-  <ng-template #elseBlock1>
-    <p>ShowMe is checked Using elseBlock</p>
-  </ng-template>
-
-<h3>nIf then else</h3>
-  <p *ngIf="showMe; then thenBlock2 else elseBlock2">
-    This is not rendered
-  </p>
-   
-  <ng-template #thenBlock2>
-    <p>ShowMe is checked Using thenblock</p>
-  </ng-template>
-   
-  <ng-template #elseBlock2>
-    <p>ShowMe is unchecked Using elseBlock</p>
-  </ng-template>
-
-<h3>ngFor</h3>
-    <p>Items</p>
-<ul>
-  <li *ngFor="let obj of items">
-  {{ obj.code }} - {{obj.itemName}}
-
-    </li>
-</ul>
-    
-<h1>Uppercase Pipe</h1>
-      <b>{{title | uppercase}}</b><br/>
-      
-      <h1>Lowercase Pipe</h1>
-      <b>{{title | lowercase}}</b>
-      
-      <h1>Currency Pipe</h1>
-      <b>{{6589.23 | currency:"USD"}}</b><br/>
-      <b>{{6589.23 | currency:"USD":false}}</b> //Boolean true is used to get the sign of the currency.
-      
-      <h1>Date pipe</h1>
-      <b>{{todaydate | date:'d/M/y'}}</b><br/>
-      <b>{{todaydate | date:'shortTime'}}</b>
-      
-      <h1>Decimal Pipe</h1>
-      <b>{{ 454.78787814 | number: '3.4' }}</b> 
-   </div>
-   
-
-      <h1>Json Pipe</h1>
-      <b>{{ jsonval | json }}</b>
-      <h1>Percent Pipe</h1>
-      <b>{{00.54565 | percent}}</b>
-      <h1>Slice Pipe</h1>
-      <b>{{months | slice:2:6}}</b> -->
+ 
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
@@ -178,12 +82,6 @@ Event Payload - $event - click event
 <!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
-<!--<app-employeelistcomponent></app-employeelistcomponent>
-App component loaded-->
-<!--<app-child></app-child> -->
-<nav>
-  <a class="button" routerLink="/add">Add</a> |
-  <a class="button" routerLink="/employees">Employees List</a>
-  <a class="button" routerLink="/profileAdd">Add Profile</a>
-</nav>
+
+
 <router-outlet></router-outlet>
