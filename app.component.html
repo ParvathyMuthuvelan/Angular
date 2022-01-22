@@ -59,6 +59,31 @@
 <button (click)="clickMe()">Click Me</button>
 <p>You have clicked {{clickCount}}</p>
 
+<h1>
+    Event Payload - $event - click event 
+    </h1>
+    <input type="text" (click)="show($event)" value="hello">
+    
+ 
+<h1>
+    Event Payload - $event - keyup event 
+    </h1>
+  <input type="text" (keyup)="displayText($event)">  
+    
+  <p>{{text}}</p>   
+
+
+  <h1>
+    Event Payload - $event - click event 
+    </h1>
+  <button (click)="onSave($event)">Save</button>
+
+  <h2>Template Reference Variable</h2>
+  <input #refvar (input)="handleInput1(refvar)">
+  <p>You have entered {{val}}</p>
+
+
+
 <h3>One way binding</h3>
 {{name}}
  Name    <input type="text" name="value" value={{name}}>
@@ -72,7 +97,69 @@
  After changing name,
  {{name}}
 
+
+ <h1>Angular - Structural directives</h1>
+<h3>ngSwitch</h3>
+<div >
+  Input string : <input type='text' [(ngModel)]="num" />
+
+  <div [ngSwitch]="num">
+    <div *ngSwitchCase="'1'"> One </div>
+
+    <div *ngSwitchCase="'2'">Two</div>
+    <div *ngSwitchCase="'3'">Three</div>
+    <div *ngSwitchCase="'4'">Four</div>
+    <div *ngSwitchCase="'5'">Five</div>
+    <div *ngSwitchDefault>This is Default</div>
+  </div>
  
+  <div >
+    Show <input type="checkbox" [(ngModel)]="showMe" />
+  </div>
+   
+  <h3>ngIf </h3>
+   
+  <p *ngIf="showMe">
+    ShowMe is checked
+  </p>
+
+  <p *ngIf="!showMe">
+    ShowMe is unchecked
+  </p>
+
+  <h3>ngIf - else</h3>
+   
+  <p *ngIf="showMe; else elseBlock1">
+    ShowMe is checked
+  </p>
+   
+  <ng-template #elseBlock1>
+    <p>ShowMe is checked Using elseBlock</p>
+  </ng-template>
+
+
+  <h3>ngIf then else</h3>
+  <p *ngIf="showMe; then thenBlock2 else elseBlock2">
+    This is not rendered
+  </p>
+   
+  <ng-template #thenBlock2>
+    <p>ShowMe is checked Using thenblock</p>
+  </ng-template>
+   
+  <ng-template #elseBlock2>
+    <p>ShowMe is unchecked Using elseBlock</p>
+  </ng-template>
+
+  <h3>ngFor</h3>
+    <p>Items</p>
+<ul>
+  <li *ngFor="let x of items">
+  {{ x.code }} - {{x.itemName}}
+
+    </li>
+</ul>
+
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
