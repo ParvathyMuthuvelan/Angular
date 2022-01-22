@@ -1,0 +1,400 @@
+Data binding - String interpolation
+import { Component } from '@angular/core';    
+@Component({    
+  selector: 'app-root',    
+  templateUrl: './app.component.html',    
+  styleUrls: ['./app.component.css']    
+})    
+export class AppComponent {    
+  title = 'Data binding example using String Interpolation';    
+    numberA: number = 10;    
+    numberB: number = 20;    
+ addTwoNumbers() {    
+    return this.numberA + this.numberB;    
+  }    
+  }    
+app.component.html:
+
+<h2>Calculation is : {{ numberA + numberB }}</h2>  
+Event binding
+event binding is used to handle the events raised by the user actions like button click, mouse movement, keystrokes, etc. When the DOM event happens at an element(e.g. click, keydown, keyup), it calls the specified method in the particular component. 
+
+Using Event Binding we can bind data from DOM to the component and hence can use that data for further purposes.
+
+Syntax:
+
+< element (event) = function() >
+<h1>
+Event binding
+</h1>
+<input (click)="show($event)" value="hello">
+
+import { Component } from '@angular/core';    
+@Component({    
+  selector: 'app-root',    
+  templateUrl: './app.component.html',    
+  styleUrls: ['./app.component.css']    
+})    
+export class AppComponent {    
+  show(event) {
+    console.log(event.toElement.value);
+  }    
+}
+
+Example 2: Using keyup event on the input element.
+
+app.component.html
+
+<!-- event is passed to function -->
+<input (keyup)="displayText($event)">  
+  
+  
+<p>{{text}}</p>
+
+import { Component } from '@angular/core';    
+@Component({    
+  selector: 'app-root',    
+  templateUrl: './app.component.html',    
+  styleUrls: ['./app.component.css']    
+})    
+export class AppComponent {   
+  text = ''; 
+  displayText(x) { 
+  this.text=this.text+x.target.value;
+     // this.text += x.target.value + ' , '; 
+  } 
+}
+
+3.app.component.html:
+
+<h2> Event Binding Example</h2>  
+<button (click)="onSave($event)">Save</button> <!--Event Binding-->  
+
+import { Component } from '@angular/core';    
+@Component({    
+  selector: 'app-root',    
+  templateUrl: './app.component.html',    
+  styleUrls: ['./app.component.css']    
+})    
+export class AppComponent {      
+  onSave($event){    
+    console.log("Save button is clicked!", $event);    
+  }    
+}    
+Ex:4
+Copy the following code to app.component.html
+
+app.component.html
+ 
+<h1 [innerText]="title"></h1>
+ 
+<h2>Example 1</h2>
+<button (click)="clickMe()">Click Me</button>
+<p>You have clicked {{clickCount}}</p>
+app.component.ts
+clickCount=0
+  clickMe() {
+    this.clickCount++;
+  }
+ <button on-click="clickMe()">Click Me</button>
+
+$event Payload
+DOM Events carries the event payload. I.e the information about the event. We can access the event payload by using $event as an argument to the handler function.
+The properties of a $event object vary depending on the type of DOM event. For example, a mouse event includes different information than an input box editing event.
+Template reference variable
+We can also make use of the template reference variable to pass the value instead of $event.
+
+In the template
+
+<h2>Template Reference Variable</h2>
+<input #el (input)="handleInput1(el)">
+<p>You have entered {{val}}</p>
+
+ val="";
+handleInput1(element) {
+  this.val=element.value;
+}
+ 
+<input (keyup)="value1= $any($event.target).value" />
+<p>You entered {{value1}}</p>
+
+Two-way data binding
+ in one-way data binding any change in the template (view) were not be reflected in the component TypeScript code. To resolve this problem, Angular provides two-way data binding. The two-way binding has a feature to update data from component to view and vice-versa.
+
+In two-way databinding, automatic synchronization of data happens between the Model and the View. Here, change is reflected in both components. Whenever you make changes in the Model, it will be reflected in the View and when you make changes in View, it will be reflected in Model.
+
+This happens immediately and automatically, ensures that the HTML template and the TypeScript code are updated at all times.
+
+
+
+In two way data binding, property binding and event binding are combined together.
+
+[(ngModel)] = "[property of your component]"  
+
+app.component.ts file:
+
+import { Component } from "@angular/core";    
+@Component({    
+  selector: "app-root",    
+  templateUrl: "./app.component.html",    
+  styleUrls: ["./app.component.css"]    
+})    
+export class AppComponent {    
+  fullName: string = "Hello World";    
+}    
+
+app.component.html file:
+
+<h2>Two-way Binding Example</h2>    
+   <input [(ngModel)]="fullName" /> <br/><br/>    
+<p> {{fullName}} </p>  
+
+
+The Angular directives are used to manipulate the DOM. By using Angular directives, you can change the appearance, behavior or a layout of a DOM element. It also helps you to extend HTML.
+Component Directives
+Structural Directives
+Attribute Directives
+
+Component Directives: Component directives are used in main class. They contain the detail of how the component should be processed, instantiated and used at runtime.
+
+Structural Directives: Structural directives start with a * sign. These directives are used to manipulate and change the structure of the DOM elements. For example, *ngIf directive, *ngSwitch directive, and *ngFor directive.
+
+*ngIf Directive: The ngIf allows us to Add/Remove DOM Element.
+
+*ngSwitch Directive: The *ngSwitch allows us to Add/Remove DOM Element. It is similar to switch statement of C#.
+
+*ngFor Directive: The *ngFor directive is used to repeat a portion of HTML template once per each item from an iterable list (Collection).
+
+Attribute Directives: Attribute directives are used to change the look and behavior of the DOM elements. For example: ngClass directive, and ngStyle directive etc.
+
+ngClass Directive: The ngClass directive is used to add or remove CSS classes to an HTML element.
+ngStyle Directive: The ngStyle directive facilitates you to modify the style of an HTML element using the expression. You can also use ngStyle directive to dynamically change the style of your HTML element.
+
+The ngIf Directive is used to add or remove HTML Elements according to the expression. The expression must return a Boolean value. If the expression is false then the element is removed, otherwise element is inserted. It is similar to the ng-if directive of AngularJS.
+
+ngIf Syntax
+<p *ngIf="condition">  
+    condition is true and ngIf is true.  
+</p>  
+
+<p *ngIf="!condition">  
+    condition is false and ngIf is false.  
+</p>  
+
+The *ngIf directive form with an "else" block
+
+<div *ngIf="condition; else elseBlock">  
+
+Content to render when condition is true.  
+</div>  
+
+<ng-template #elseBlock>  
+Content to render when condition is false.  
+</ng-template>  
+
+The ngIf directive does not hide the DOM element. It removes the entire element along with its subtree from the DOM. It also removes the corresponding state freeing up the resources attached to the element.
+
+Angular ngSwitch Directive
+The ngSwitch is an Angular directive, which allows us to display one or more DOM elements based on some pre-defined condition.
+
+The following is the syntax of ngSwitch. It contains three separate directives. ngSwitch, ngSwitchCase & ngSwitchDefault.
+
+Syntax
+
+<container_element [ngSwitch]="switch_expression">
+    <inner_element *ngSwitchCase="match_expresson_1">...</inner_element>
+
+    <inner_element *ngSwitchCase="match_expresson_2">...</inner_element>
+    <inner_element *ngSwitchCase="match_expresson_3">...</inner_element>
+
+    <inner_element *ngSwitchDefault>...</inner_element>
+
+</container_element>
+
+
+ngSwitch
+ngSwitch is bound to container_element like div etc. We assign a switch-expression to the ngSwitch via property binding syntax. Angular evaluates the switch_expression at runtime and based on its value displays or removes the elements from the DOM.
+
+ngSwitchCase
+ngSwitchCase is bound to an inner_element, which we must place inside the container_element. We use * (Asterix symbol), because it is a structural directive. We also assign a match_expression, which Angular evaluates at runtime. The Angular displays the inner_element only when the value of the match_expression matches the value of the switch_expression else it is removed from the DOM.
+
+If there is more than one match, then it displays all of them.
+
+Note that the ngSwitchCase does not hide the element, but removes them from the DOM.
+
+ngSwitchDefault
+ngSwitchDefault is also bound to an inner_element, which we must place inside the container_element. But it does not have any match_expression. If none of the ngSwitchCase match_expression matches the switch_expression, then the angular displays the element attached to the ngSwitchDefault
+
+You can place ngSwitchDefault anywhere inside the container element and not necessarily at the bottom.
+
+You are free to add more than one ngSwitchDefault directive. Angular displays all of them.
+
+Style Binding
+he Style Binding uses the [] brackets. Place the CSS Style property (binding target) inside the square bracket. The CSS Style property must begin with ‘Style’ followed by a dot (.) and then style name.
+
+For Example, to set the color of p element.
+
+<p [style.color]="'red'">Give me red</p>
+<p [style.background-color]="'grey'">some paragraph with grey background</p>
+<button [style.border]="'5px solid yellow'">Save</button>
+ 
+Conditionally setting the styles
+Define a variable status in the component
+
+status:string='error';
+ 
+And use that variable in the template to set the color of button either to red and blue depending on the value of the status variable.
+
+<button [style.color]="status=='error' ? 'red': 'blue'">Button 1</button> 
+
+Another way is to create the getColor() method and use it in the template as shown below.
+ 
+getColor() {
+  return 'yellow';
+}
+
+<button [style.color]="getColor()">Button 2</button> 
+
+Setting the units
+The styles like font-size, width etc have unit extension. The following example conditionally sets the font-size in “px” unit
+ 
+<button [style.font-size.px]="'20'" >Big Button</button>
+
+The style property name can be written in either dash-case (font-size), as shown in above example, or camelCase (fontSize) as shown below.
+
+<button [style.fontSize.px]="'20'" >Big Button</button>
+
+Setting Multiple styles
+To change the multiple styles, we need to add each one separately as shown below.
+<p [style.color]="getColor()" 
+   [style.font-size.px]="'20'"      
+   [style.background-color]="status=='error' ? 'red': 'blue'">
+   paragraph with multiple styles
+</p>
+
+ngStyle
+ngStyle Syntax
+
+<element [ngStyle]="{'styleNames': styleExp}">...</element>
+ 
+Where element is the DOM element to which style is being applied
+
+styleNames are style names ( ex: ‘font-size’, ‘color’ etc). with an optional suffix (ex: ‘top.px’, ‘font-style.em’),
+
+styleExp is the expression, which is evaluated and assigned to the styleNames
+
+We can add more than one key value pairs 'styleNames': styleExp each separated by comma.
+
+In the following example, some-element gets the style of font-size of 20px.
+
+<some-element [ngStyle]="{'font-size': '20px'}">Set Font size to 20px</some-element>
+ 
+The units (for example px, em) are prefixed to the styleName.
+
+Syntax:
+<element [ngStyle]="{'styleName.unit': widthExp}">...</element>
+ 
+Example:
+<some-element[ngStyle]="{'font-size.em': '3'}">...</some-element>
+ Change Style Dynamically
+Initialize a variable color and add it to your component
+ 
+color: string= 'red';
+
+And in your template, add the following
+ 
+<input [(ngModel)]="color" /> 
+<div [ngStyle]="{'color': color}">Change my color</div>
+ In the above example, we apply ngStyle directive to the div element. We assign JavaScript object {'color': color} to the ngStyledirective. The variable color is dynamically changed by the user input and it is applied instantly to the div element
+
+The following code uses the ternary operator to set the background color to red if the status variables indicator is set to “error” else blue.
+ 
+div [ngStyle]="{'background-color':status === 'error' ? 'red' : 'blue' }"></<div>
+ngStyle multiple attributes
+We can change multiple style as shown in the following example
+
+<p [ngStyle]="{'color': 'purple',
+               'font-size': '20px',
+               'font-weight': 'bold'}">
+     Multiple styles
+</p>
+The JavaScript object is assigned to the ngStyledirective containing multiple properties. Each property name of the object acts as a class name. The value of the property is the value of the style.
+
+Specifying CSS Units in ngStyle
+CSS has several units for expressing a length, size etc. The units can be em, ex, %, px, cm, mm, in, pt, PC etc. We prefix the units to the StyleName as shown below.
+ 
+<input [(ngModel)]="size" /> 
+<div [ngStyle]="{'font-size.px': size}">Change my size</div>
+ 
+Using object from Controller
+
+Create a class as shown below
+class StyleClass {
+   'color': string= 'blue';
+   'font-size.px': number= 20;
+   'font-weight': string= 'bold'; 
+}
+ 
+And in controller initialize the class
+styleClass: StyleClass = new StyleClass();
+ 
+Then you can refer it in your template as shown below
+<div [ngStyle]="styleClass">size & Color</div>
+
+Built-in attribute directives
+Attribute directives listen to and modify the behavior of other HTML elements, attributes, properties, and components.
+
+Many NgModules such as the RouterModule and the FormsModule define their own attribute directives. The most common attribute directives are as follows:
+
+NgClass—adds and removes a set of CSS classes.
+NgStyle—adds and removes a set of HTML styles.
+NgModel—adds two-way data binding to an HTML form element.
+
+Built-in structural directives
+Structural directives are responsible for HTML layout. They shape or reshape the DOM's structure, typically by adding, removing, and manipulating the host elements to which they are attached.
+
+This section introduces the most common built-in structural directives:
+
+NgIf—conditionally creates or disposes of subviews from the template.
+NgFor—repeat a node for each item in a list.
+NgSwitch—a set of directives that switch among alternative views.
+
+mport { Component } from '@angular/core';
+ 
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title: string ="Top 5 Movies" ;
+ 
+ 
+  movies: Movie[] =[
+ 
+  {title:'Zootopia',director:'Byron Howard, Rich Moore',cast:'Idris Elba, Ginnifer Goodwin, Jason Bateman',releaseDate:'March 4, 2016'},
+  {title:'Batman v Superman: Dawn of Justice',director:'Zack Snyder',cast:'Ben Affleck, Henry Cavill, Amy Adams',releaseDate:'March 25, 2016'},
+  {title:'Captain American: Civil War',director:'Anthony Russo, Joe Russo',cast:'Scarlett Johansson, Elizabeth Olsen, Chris Evans',releaseDate:'May 6, 2016'},
+  {title:'X-Men: Apocalypse',director:'Bryan Singer',cast:'Jennifer Lawrence, Olivia Munn, Oscar Isaac',releaseDate:'May 27, 2016'},
+  {title:'Warcraft',director:'Duncan Jones',cast:'Travis Fimmel, Robert Kazinsky, Ben Foster',releaseDate:'June 10, 2016'},
+]
+ 
+CompositeKey (index,item){
+    return item.title + item.director ; 
+   }
+}
+ 
+class Movie {
+  title : string;
+  director : string;
+  cast : string;
+  releaseDate : string;
+}
+ <h1> {{title}} </h1>
+ 
+  <ul>
+    <li *ngFor="let movie of movies">
+      {{ movie.title }} - {{movie.director}}
+    </li>
+  </ul>
+ 
