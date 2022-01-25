@@ -7,6 +7,9 @@ import { Employee } from './employee';
   providedIn: 'root'
 })
 export class EmployeeService {
+
+ 
+ 
   private url:string="/assets/data/employees.json";
 
  // employee: Employee=new Employee();
@@ -31,5 +34,13 @@ export class EmployeeService {
    //to send http get request
   
    return this.employee;
+    }
+    createEmployee(employee: Employee):void {
+     // return this.http.post(`${this.baseUrl}`+'/saveEmployee', employee);
+     console.log(employee);
+    }
+    updateEmployee(id: number, employee: Employee) {
+    //to send put request 
+    console.log(employee);
     }
 }
