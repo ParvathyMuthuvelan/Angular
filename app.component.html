@@ -10,12 +10,9 @@
 
 
 
-    <span>{{ title }} app is running!</span>
-    <br>
+  
 
-    Welcome {{ name }}
-
-    <p>100x80 = {{ 100*80 }}</p>
+  <!--  <p>100x80 = {{ 100*80 }}</p>
    
     <p> Calling function.  {{ getTitle()}} </p>
 <h3>Property Binding</h3>
@@ -161,6 +158,39 @@
 </ul>
 
 
+<h1>Angular Pipes - Uppercase Pipe</h1>
+      <b>{{title | uppercase}}</b><br/>
+      
+      <h1>Lowercase Pipe</h1>
+      <b>{{title | lowercase}}</b>
+      
+      <h1>Currency Pipe</h1>
+      <b>{{6589.23 | currency:"USD"}}</b><br/>
+      <b>{{6589.23 | currency:"USD":false}}</b> //Boolean true is used to get the sign of the currency.
+      
+      <h1>Date pipe</h1>
+      <b>{{todaydate | date:'d/M/y'}}</b><br/>
+      <b>{{todaydate | date:'shortTime'}}</b>
+      
+      <h1>Decimal Pipe</h1>
+      <b>{{ 454.78787814 | number: '3.4' }}</b> 
+   </div>
+   
+
+      <h1>Json Pipe</h1>
+      <b>{{ jsonval | json }}</b>
+
+      <h1>Percent Pipe</h1>
+      <b>{{00.54565 | percent}}</b>
+
+      <h1>Slice Pipe</h1>
+      <b>{{months | slice:2:6}}</b> 
+      <h1>Custom Pipe</h1>
+      <b>Square root of 25 is: {{25 | sqrt}}</b>
+      <br/>
+      <b>Square root of 729 is: {{729 | sqrt}}</b>
+  -->
+
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
 <!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
@@ -169,6 +199,33 @@
 <!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+        <a routerLink="employees"  class="nav-link" >Employee List</a>
+    </li>
+    <li class="nav-item">
+        <a routerLink="addemployee" class="nav-link" >Add Employee</a>
+    </li>
+    <li class="nav-item">
+      <a routerLink (click)="logout()" class="nav-link"  >Logout</a>
+  </li>
+  </ul>
+</nav>
+<div class="container">
+  <br>
+  <h2 style="text-align: center;">{{title}}</h2>
+  <hr>  
+  <div class="card">
+    <div class="card-body">
+  <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
 
-
-<router-outlet></router-outlet>
+<footer class="footer">
+  <div class="container">
+      <span>All Rights Reserved </span>
+  </div>
+</footer>
