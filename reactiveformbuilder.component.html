@@ -1,0 +1,35 @@
+<form [formGroup]="userForm" (ngSubmit)="logFormValue()">
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input class="form-control" name="firstName" id="firstName" type="text" formControlName="firstName">
+
+     <!-- <div *ngIf="userForm.controls.firstName!.invalid"
+    class="alert alert-danger">
+    <div *ngIf="userForm.controls.firstName!.errors.required">
+      This Field is Required.
+    </div>
+    </div>-->
+
+
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input class="form-control" name="lastName" id="lastName" type="text" formControlName="lastName">
+    </div>
+    <div class="form-group">
+      <label for="role">User Role</label>
+      <select class="form-control" name="role" id="role" formControlName="role">
+       
+        <option *ngFor="let userRole of roles" [ngValue]="userRole">{{userRole}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="notes">Additional Notes</label>
+      <textarea class="form-control" name="notes" id="notes" formControlName="notes" rows="6" 
+          placeholder="Add additional notes here."></textarea>
+    </div>
+  <!--  <div *ngIf="userForm.controls.notes?.errors.maxlength">
+        your can enter only 15 characters
+      </div> -->
+    <button type="submit" class="btn btn-default" [disabled]="!userForm.valid">Submit</button>
+  </form>
