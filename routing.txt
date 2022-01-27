@@ -1,0 +1,190 @@
+In component-based applications such as Angular applications, a screen view is implemented using one or more components.
+
+Routing in Angular is also refereed to as component routing because the Router maps a single or a hierarchy of components to a specific URL.
+
+Routes and Paths
+In Angular, a route is an object (instance of Route) that provides information about which component maps to a specific path. A path is the fragment of a URL that determines where exactly is located the resource (or page) you want to access. You can get the path by taking off the domain name from the URL.
+
+In Angular you can define a route using route configurations or instances of the Route interface.
+
+A collection of routes defines the router configuration which is an instance of Routes.
+
+Each route can have the following properties:
+
+path - is a string that specifies the path of the route.
+pathMatch - is a string that specifies the matching strategy. It can take prefix (default) or full.
+component -is a component type that specifies the component that should be mapped to the route.
+redirectTo -is the URL fragment which you will be redirected to if a route is matched.
+
+These are the commonly used properties of routes but there are many others. You can find the rest of properties from the official docs.
+
+For example, this is the definition of a route that maps the /my/path/ path to the MyComponent component:
+
+{ path: 'my/path/', component: MyComponent }
+
+The path can be the empty string which usually refers to the main URL of your application or can be also a wildcard string (**) which will be matched by the router if the visited URL doesn’t match any paths in the router configuration. 
+
+This is usually used to display a page doesn’t exist message or redirect the users to an existing path.
+
+Route Matching Strategies
+The Angular router has a powerful matching algorithm with various built-in and custom matching strategies.
+
+The builtin matching strategies are prefix (the default) and full.
+When the matching strategy of a route is prefix, the router will simply check if the start of the browser’s URL is prefixed with the route’s path. If that’s the case, it will render the related component.
+
+This is not always the wanted behavior. In some scenarios, you want the router to match the full path before rendering a component. You can set the full strategy using the pathMatch property of a route. For example:
+
+{ path: 'products', pathMatch: 'full', component: ProductListComponent} 
+A full strategy ensures that the path segment of browser’s URL equals exactly the route’s path.
+
+A special case of using the full property is when you want to match the empty path. Because using the prefix strategy will match all paths since the empty path prefixes all paths.
+
+For example, we want to redirect the user to the /products route when they visit our application. This is how our route configuration should look like:
+
+{ path: '',  redirectTo: '/products', pathMatch: 'full' }
+You can also use custom matcher if the combination of the path property and matching strategy doesn’t help you match your component to a specific URL.
+
+You can provide a custom matcher using the matcher property of a route definition. For an example, see UrlMatcher.
+
+Route Parameters
+Dynamic routes are often used in web applications to pass data (parameters) or state to the application or between various components and pages. The Angular router has support for dynamic paths and provides an easy to use API to access route parameters.
+
+You can define a route parameter using the colon syntax followed by the name of the parameter. For example:
+
+  {path: 'product/:id' , component: ProductDetailComponent}
+
+In the example, id is the route parameter. /product/1, /product/2, /product/p1 … are examples of URLs that will be matched via this route definition.
+
+The last segment of these URLs are the values of the id parameter that will be passed to ProductDetailComponent.
+
+In your matched components, you can access the route parameters using various APIs:
+
+Using the ActivatedRoute service,
+Using the ParamMap Observable available starting with Angular 4.
+Angular Route Guards
+Route guards enables you to allow or disallow access to your specific application routes based on some criteria (for example if the user is logged in or not).
+
+You can also use a guard to prevent users from leaving a component depending on some conditions (for example if a form is not submitted yet and data can be lost).
+
+You can use Angular guards to protect components or complete modules.
+
+To protect a route, you first need to create a guard by sub-classing the CanActivate interface and overriding the canActivate() method which needs to return a Boolean value (true means access is allowed) and add it to route definition via the canActivate attribute. For example:
+
+{ path:  'product/:id, canActivate:[ExampleGuard], component:  ProductDetailComponent}
+This is an example implementation of ExampleGuard:
+
+class MyGuard implements CanActivate {
+  canActivate() {
+    return true;
+  }
+}
+Since the canActivate() method will always return true, this guard will always allow access to ProductDetailComponent.
+
+The Router Outlet
+The Router-Outlet is a directive exported by RouterModule and acts as a placeholder that indicates to the router where it needs to insert the matched component(s). The component that has the router outlet is refereed to as the application shell:
+
+<router-outlet></router-outlet>
+The Angular router supports more that one outlet in the same application. The main (or top-level) outlet is called the primary outlet. Other outlets are called secondary outlets.
+
+You can specify a target outlet for a route definition using the outlet attribute.
+
+The Navigation Directives
+Angular Router provides two directives for navigation: The routerLink directive which replaces the href attribute in the <a> tags to create links and routerLinkActive for marking the active link. For example:
+
+<a [routerLink]="'/products'">Products</a>
+Step 1: Creating a Angular 11 Project
+
+
+
+
+
+1.The <base href> tag is not specific to Angular Router. It’s an HTML tag which specifies the base URL for all relative URLs in the page.
+creating a Routing Module
+Next, you would need to create a routing module inside the main application module and in its own file using a command like this:
+
+$ ng generate module app-routing --module app --flat
+The --flat option tells the CLI to generate a flat file without a subfolder. This way the app-routing.module.ts file will be created in the src/app folder along with the app.module.ts file. This is the content of this module before setting up routing:
+
+
+Importing the Router and Setting up Routing
+Next, you would need to open the src/app/app-routing.module.ts file and update it as follows:
+
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+const routes: Routes = [];
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+We import the Routes and RouterModule symbols from the @angular/router package which is the central repository that holds all the Router APIs.
+
+Next, we declare a routes variable of the Routes type.
+
+Next, we import RouterModule via the imports array of our routing module and we pass in the routes array to RouterModule via the forRoot() method.
+
+And finally, we export RouterModule from our routing module by adding it to the exports array.
+
+As you see, the AppRoutingModule is merely a wrapper around an instance of RouterModule (returned from the static forRoot() method) which feeds it the routes configuration object. It’s now empty but you will add routes to it once you create the components of your application.
+
+The forRoot() static method creates a module that contains all the directives, the given routes, and the router service itself.
+
+In some situations (for submodules and lazy loaded submodules), you would need to use the forChild() static method instead which creates a module that contains all the directives and the given routes, but does not include the router service.
+
+For more details about the difference between the two methods check out RouterModule.forRoot(ROUTES) vs RouterModule.forChild(ROUTES)
+
+
+Adding the Router-Outlet
+After setting up the routing module, next you would need to add the router outlet in your main application component. Open the src/app/app.component.html, this is how it looks like:
+
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+  <!-- [...] -->
+<router-outlet></router-outlet>
+
+The important thing you need to focus on is <router-outlet>.
+
+The RouterOutlet is a built-in Angular directive that gets exported from the @angular/router package, precisely RouterModule and it’s a placeholder that marks where in the template, the router can render the components matching the current URL and the routes configuration passed to the Router.
+
+Importing the Routing Module in the Main Application Module
+Finally, you would need to import AppRoutingModule in your main application module which resides in the src/app/app.module.ts file. 
+
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+We import AppRoutingModule from ./app-routing.module and add it the imports array of AppModule.
+
+
+Next, add the following object to the routes array:
+
+  {path: 'products' , component: ProductListComponent},
+{path: 'product/:id' , component: ProductDetailComponent}
+{ path: '',  redirectTo: '/products', pathMatch: 'full' },
+
+
+
+
+
+
+
+
+
+
+
+
